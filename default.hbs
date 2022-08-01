@@ -14,102 +14,38 @@
 
 </head>
 <body class="{{body_class}}">
-<div class="gh-viewport">
-
-<header id="gh-head" class="gh-head">
-    <nav class="gh-head-inner gh-container">
-
-        <div class="gh-head-brand">
-            <a class="gh-head-logo" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                {{else}}
-                    {{@site.title}}
-                {{/if}}
-            </a>
-            <a class="gh-burger" role="button">
-                <div class="gh-burger-box">
-                    <div class="gh-burger-inner"></div>
+<main class="w-full h-screen">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div>
+            <div class="lg:fixed flex flex-col md:flex-row p-2 md:p-3 lg:p-5 lg:w-1/2">
+                <div class="flex-none p-2 lg:p-6">
+                    <img class="rounded-full h-24 w-24" src="{{@site.logo}}" alt="{{@site.title}}" />
                 </div>
-            </a>
-        </div>
-        <div class="gh-head-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-head-actions-list">
-                {{#if @site.facebook}}
-                <a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                {{/if}}
-                {{#if @site.twitter}}
-                <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                {{/if}}
-                <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
+                <div class="flex h-full">
+                    <div class="flex-col p-2 lg:p-6 gap-10">
+                        <div class="mb-3 mt-3">
+                            <h1 class="font-bold text-4xl">{{@site.title}}</h1>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <h2 class="text-lg">{{@site.description}}</h2>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            {{navigation}}
+                        </div>
+                        <div class="mb-3 mt-3">
+                            {{> "social-links" }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-</header>
-
-<main class="gh-main">
-
-    {{{body}}}
-    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
-
-</main>
-
-<footer class="gh-foot">
-    <div class="gh-container">
-        <div class="gh-foot-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-foot-meta">
-            Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+        <div style="background-color: {{@site.accent_color}}" class="min-h-screen rounded-tl-3xl p-2 md:p-3 lg:p-6">
+            <div class="pt-6 pb-6">
+                {{{body}}}
+            </div>
         </div>
     </div>
-</footer>
-
-</div>
-
-{{!-- <foot> --}}
-
-<script src="{{asset "built/jquery-3.4.1.min.js"}}"></script>
-
-{{#if pagination.pages}}
-<script>
-    var maxPages = parseInt('{{pagination.pages}}');
-</script>
-<script src="{{asset "built/infinitescroll.js"}}"></script>
-{{/if}}
-
-<script>
-$(document).ready(function () {
-    // Mobile Menu Trigger
-    $('.gh-burger').click(function () {
-        $('body').toggleClass('gh-head-open');
-    });
-});
-</script>
-
-{{#is "post, page"}}
-<script src="{{asset "built/jquery.fitvids.js"}}"></script>
-<script>
-var images = document.querySelectorAll('.kg-gallery-image img');
-images.forEach(function (image) {
-    var container = image.closest('.kg-gallery-image');
-    var width = image.attributes.width.value;
-    var height = image.attributes.height.value;
-    var ratio = width / height;
-    container.style.flex = ratio + ' 1 0%';
-});
-$(document).ready(function () {
-    var $postContent = $(".gh-content");
-    $postContent.fitVids();
-});
-</script>
-{{/is}}
-
+</main>
 {{ghost_foot}}
-{{!-- Outputs important scripts - should always be included before closing body tag --}}
-
 </body>
 </html>

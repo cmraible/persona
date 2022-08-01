@@ -1,0 +1,21 @@
+{{#if isSecondary }}
+    <div class="flex flex-col gap-5">
+        <!-- Loop through the navigation items -->
+        {{#foreach navigation}}
+        <div class="text-center flex">
+            <a class="p-5 justify-center bg-white/20 hover:bg-black/10 rounded-2xl text-xl w-full" href="{{url absolute="true"}}">{{label}}</a>
+        </div>
+        {{/foreach}}
+        <!-- End the loop -->
+    </div>
+        
+{{else}}
+    <ul class="flex flex-row flex-wrap gap-2">
+        <!-- Loop through the navigation items -->
+        {{#foreach navigation}}
+        <li class="underline {{#unless current}}font-semibold{{/unless}}{{#if current}}font-bold{{/if}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+        <!-- End the loop -->
+    </ul>
+{{/if}}
+

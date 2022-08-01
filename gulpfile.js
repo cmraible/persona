@@ -14,6 +14,9 @@ var colorFunction = require('postcss-color-mod-function');
 var cssnano = require('cssnano');
 var easyimport = require('postcss-easy-import');
 
+// import tailwind at the top of the file
+const tailwind = require('tailwindcss');
+
 function serve(done) {
     livereload.listen();
     done();
@@ -39,6 +42,7 @@ function css(done) {
     var processors = [
         easyimport,
         colorFunction(),
+        tailwind(),
         autoprefixer(),
         cssnano()
     ];
@@ -78,7 +82,8 @@ function zipper(done) {
 
 const cssWatcher = () => watch('assets/css/**', css);
 const hbsWatcher = () => watch(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
-const watcher = parallel(cssWatcher, hbsWatcher);
+const hbsCssWatcher = () => watch(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs'], css);
+const watcher = parallel(cssWatcher, hbsWatcher, hbsCssWatcher);
 const build = series(css, js);
 const dev = series(build, serve, watcher);
 

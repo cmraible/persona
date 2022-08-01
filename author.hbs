@@ -1,40 +1,48 @@
 {{!< default}}
 
-<div class="gh-page">
-    <div class="gh-container">
+<div>
+    <div>
 
         {{#author}}
-        <header class="gh-page-head">
-            {{#if profile_image}}
-                <img class="gh-author-image" src="{{profile_image}}" alt="{{name}}" />
-            {{/if}}
+        <header>
 
-            <h1>{{name}}</h1>
-            {{#if bio}}
-                <p>{{bio}}</p>
-            {{/if}}
+            <div class="flex flex-col md:flex-row p-2 md:p-3 lg:p-5">
+                {{#if profile_image}}
+                    <div class="flex-none p-2 lg:p-6">                 
+                        <img class="rounded-full h-24 w-24" src="{{profile_image}}" alt="{{name}}" />
+                    </div>
+                {{/if}}
 
-            <div class="gh-author-meta">
-                <div class="gh-author-links">
-                    {{#if website}}
-                        <a href="{{website}}" target="_blank" rel="noopener">Website</a>
-                    {{/if}}
-                    {{#if twitter}}
-                        <a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a>
-                    {{/if}}
-                    {{#if facebook}}
-                        <a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a>
-                    {{/if}}
+                <div class="flex h-full">
+                    <div class="flex-col p-2 lg:p-6 gap-10">
+                        <div class="mb-3 mt-3">
+                            <h1 class="font-bold text-4xl">{{name}}</h1>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            {{#if bio}}
+                                <h2 class="text-lg">{{bio}}</h2>
+                            {{/if}}
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <ul class="flex flex-row flex-wrap gap-2">
+                                {{#if website}}
+                                    <li class="underline {{#unless current}}font-semibold{{/unless}}{{#if current}}font-bold{{/if}}"><a href="{{website}}" target="_blank" rel="noopener">Website</a></li>
+                                {{/if}}
+                                {{#if twitter}}
+                                    <li class="underline {{#unless current}}font-semibold{{/unless}}{{#if current}}font-bold{{/if}}"><a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a></li>
+                                {{/if}}
+                                {{#if facebook}}
+                                    <li class="underline {{#unless current}}font-semibold{{/unless}}{{#if current}}font-bold{{/if}}"><a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            {{#if cover_image}}
-                <img class="gh-page-image" src="{{cover_image}}" alt="{{name}}" />
-            {{/if}}
         </header>
         {{/author}}
 
-        <div class="gh-postfeed">
+        <div class="flex flex-col gap-6">
         {{#foreach posts}}
 
             {{> "card"}} {{!-- partials/card.hbs --}}
