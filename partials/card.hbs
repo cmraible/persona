@@ -2,7 +2,7 @@
 Re-usable card for linking to posts
 --}}
 
-<article class="mb-5 mt-5">
+<article class="mb-5 mt-5 ">
     <a href="{{url}}">
         {{#if feature_image}}
             <img class="rounded-t-2xl w-full"
@@ -15,7 +15,7 @@ Re-usable card for linking to posts
                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
             />
         {{/if}}
-        <div class="bg-white/20 hover:bg-black/10 rounded-b-2xl {{post_class}} p-1 md:p-3 lg:p-6">
+        <div class="bg-white/20 hover:bg-black/10 rounded-b-2xl {{post_class}} p-3 lg:p-6 {{#unless feature_image}}rounded-t-2xl{{/unless}}">
             <span class="text-xs"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
             <h2 class="font-bold text-2xl">{{title}}</h2>
             <p class="prose">{{excerpt}}</p>

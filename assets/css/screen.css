@@ -32,3 +32,28 @@ production stylesheet in assets/built/screen.css using: gulp dev
 
 /* Main - Your styles here! Edit below
 /* ---------------------------------------------------------- */
+code {
+    background-color: #DDDDDD;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+.prose ul {
+    list-style: none;
+}
+
+.prose li::before {
+    content: "•"; 
+    color: #404040;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.prose hr {
+    border-top: 1px solid #404040;
+}
