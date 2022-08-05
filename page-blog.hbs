@@ -1,0 +1,14 @@
+{{!< default}}
+
+
+<header>
+    <h1 class="mb-3 font-bold text-4xl">Blog</h1>
+</header>
+
+<div>
+    {{#get "posts" order="published_at desc"}}
+        {{#foreach posts}}
+            {{> "card"}} {{!-- partials/card.hbs --}}
+        {{/foreach}}
+    {{/get}}
+</div>
