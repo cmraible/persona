@@ -48,6 +48,23 @@
         </section>
         --}}
 
+        {{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
+        {{#if @site.members_enabled}}
+        {{#unless @member}}
+        {{#if access}}
+        <hr>
+        <div class="pt-6">
+            <h3 class="mb-6 text-xl">Subscribe for more like this</h3>
+            <form data-members-form="subscribe">
+                <input data-members-email type="email" placeholder="Email Address" required/>
+                <button type="submit" class="p-3">Continue</button>
+            </form>
+        </div>
+       
+        {{/if}}
+        {{/unless}}
+        {{/if}}
+
     </footer>
 
 </article>
