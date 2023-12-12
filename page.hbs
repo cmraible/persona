@@ -2,21 +2,23 @@
 
 {{#post}}
 <article class="{{post_class}}">
-    <header>
-        <h1 class="font-bold text-4xl">{{title}}</h1>
-        {{#if custom_excerpt}}
-            <p class="italic mt-5 mb-5">{{custom_excerpt}}</p>
-        {{/if}}
+    {{#match @page.show_title_and_feature_image}}
+        <header>
+            <h1 class="font-bold text-4xl">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="italic mt-5 mb-5">{{custom_excerpt}}</p>
+            {{/if}}
 
-        {{#if feature_image}}
-            <figure class="mt-5 mb-5">
-                <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
-                {{#if feature_image_caption}}
-                    <figcaption class="text-sm">{{feature_image_caption}}</figcaption>
-                {{/if}}
-            </figure>
-        {{/if}}
-    </header>
+            {{#if feature_image}}
+                <figure class="mt-5 mb-5">
+                    <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
+                    {{#if feature_image_caption}}
+                        <figcaption class="text-sm">{{feature_image_caption}}</figcaption>
+                    {{/if}}
+                </figure>
+            {{/if}}
+        </header>
+    {{/match}}
 
 
     <article class="prose prose-neutral mt-5">
